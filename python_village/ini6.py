@@ -9,9 +9,16 @@ __version__ = "2.2"
 
 import argparse
 
-PROBLEM_NUMBER = ""
-SAMPLE_DATASET = """""".splitlines(True)
-SAMPLE_OUTPUT = """"""
+PROBLEM_NUMBER = "ini5"
+SAMPLE_DATASET = """We tried list and we tried dicts also we tried Zen""".splitlines(True)
+SAMPLE_OUTPUT = """and 1
+We 1
+tried 3
+dicts 1
+list 1
+we 2
+also 1
+Zen 1"""
 
 parser = argparse.ArgumentParser(description=f'Script for Rosalind problem #{PROBLEM_NUMBER}')
 parser.add_argument('-d', '--dataset', help='Path to dataset file.')
@@ -30,7 +37,10 @@ else:
 
 def solution():
     f"""Solution to Rosalind problem"""
-    pass
+    from collections import Counter
+    words = dataset[0].split()
+    c = Counter(words)
+    return "\n".join([f"{word} {c[word]}" for word in c])
 
 if __name__ == "__main__":
     output = solution()
