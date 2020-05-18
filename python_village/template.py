@@ -5,9 +5,8 @@
 
 import argparse
 
-PROBLEM_NUMBER = "ini3"
-SAMPLE_DATASET = """HumptyDumptysatonawallHumptyDumptyhadagreatfallAlltheKingshorsesandalltheKingsmenCouldntputHumptyDumptyinhisplaceagain.
-22 27 97 102""".splitlines(True)
+PROBLEM_NUMBER = ""
+SAMPLE_DATASET = """""".splitlines(True)
 
 parser = argparse.ArgumentParser(description=f'Script for Rosalind problem #{PROBLEM_NUMBER}')
 parser.add_argument('--dataset', help='path to dataset file.')
@@ -22,13 +21,8 @@ else:
     dataset = SAMPLE_DATASET
 
 def solution():
-    f"""Solution to Rosalind problem"""
-    words = dataset[0]
-    indices = [int(indice) for indice in dataset[1].split()] 
-    word1 = words[indices[0]:indices[1]+1]
-    word2 = words[indices[2]:indices[3]+1]
-
-    return f"{word1} {word2}"
+    f"""Solution to Rosalind problem #{PROBLEM_NUMBER}"""
+    pass
 
 if __name__ == "__main__":
     print(solution())
