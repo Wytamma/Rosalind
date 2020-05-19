@@ -1,5 +1,4 @@
 import typer
-from typing import List
 from pathlib import Path
 from python_village import ini3, ini4, ini5, ini6
 
