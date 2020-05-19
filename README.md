@@ -4,7 +4,6 @@ My solutions to the problems found on [rosalind.info](http://rosalind.info/probl
 ## Solution template
 
 ```python
-  
 SAMPLE_DATASET = """"""
 SAMPLE_OUTPUT = """"""
 
