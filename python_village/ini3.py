@@ -1,6 +1,5 @@
 SAMPLE_DATASET = """HumptyDumptysatonawallHumptyDumptyhadagreatfallAlltheKingshorsesandalltheKingsmenCouldntputHumptyDumptyinhisplaceagain.
 22 27 97 102"""
-SAMPLE_DATASET = SAMPLE_DATASET.splitlines(True)
 SAMPLE_OUTPUT = "Humpty Dumpty"
 
 def solution(dataset):

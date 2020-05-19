@@ -5,7 +5,7 @@ And gallantly he chickened out
 He was not at all afraid to be killed in nasty ways
 Bravely talking to his feet
 Brave, brave, brave, brave Sir Robin
-He beat a very brave retreat""".splitlines(True)
+He beat a very brave retreat"""
 SAMPLE_OUTPUT = """Yes, brave Sir Robin turned about
 And gallantly he chickened out
 Bravely talking to his feet

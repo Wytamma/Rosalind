@@ -14,7 +14,7 @@ def main(
         typer.echo(typer.style(f"The problem with name: '{name_of_problem}' in not defined, you may have a typo or forgot to import it.", fg=typer.colors.WHITE, bg=typer.colors.RED))
         raise typer.Abort()
     if not path_to_dataset:
-        output = problem.solution(problem.SAMPLE_DATASET)
+        output = problem.solution(problem.SAMPLE_DATASET.splitlines(True))
         typer.echo(output)
         if test:
             try:
@@ -24,7 +24,6 @@ def main(
                 typer.echo(typer.style('\nThe soultion is not correct!', fg=typer.colors.RED, bold=True)) 
                 typer.echo('Correct output:\n')
                 typer.echo(problem.SAMPLE_OUTPUT)
-
     else:
         with open(path_to_dataset) as f:
             dataset_lines = f.readlines()

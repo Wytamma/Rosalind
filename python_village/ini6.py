@@ -1,4 +1,4 @@
-SAMPLE_DATASET = """We tried list and we tried dicts also we tried Zen""".splitlines(True)
+SAMPLE_DATASET = """We tried list and we tried dicts also we tried Zen"""
 SAMPLE_OUTPUT = """and 1
 We 1
 tried 3

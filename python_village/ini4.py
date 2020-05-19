@@ -1,4 +1,4 @@
-SAMPLE_DATASET = """100 200""".splitlines(True)
+SAMPLE_DATASET = """100 200"""
 SAMPLE_OUTPUT = "7500"
 
 def solution(dataset):
