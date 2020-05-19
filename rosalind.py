@@ -1,5 +1,6 @@
 import typer
 from pathlib import Path
+
 from python_village import ini3, ini4, ini5, ini6
 
 def main(
@@ -8,10 +9,10 @@ def main(
     test: bool = typer.Option(False, "--test", "-t", help="Test the soultion.")
     ):
     try:
-        problem = eval( name_of_problem )
-    except NameError:
+        problem = globals()[name_of_problem]
+    except KeyError:
         typer.echo(typer.style(
-            f"The problem with name: '{name_of_problem}' in not defined, you may have a typo or forgot to import it.", 
+            f"The problem '{name_of_problem}' is not defined, you may have a typo or forgot to import it.", 
             fg=typer.colors.WHITE, 
             bg=typer.colors.RED)
         )
