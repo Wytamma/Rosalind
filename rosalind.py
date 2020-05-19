@@ -11,7 +11,11 @@ def main(
     try:
         problem = eval( name_of_problem )
     except NameError:
-        typer.echo(typer.style(f"The problem with name: '{name_of_problem}' in not defined, you may have a typo or forgot to import it.", fg=typer.colors.WHITE, bg=typer.colors.RED))
+        typer.echo(typer.style(
+            f"The problem with name: '{name_of_problem}' in not defined, you may have a typo or forgot to import it.", 
+            fg=typer.colors.WHITE, 
+            bg=typer.colors.RED)
+        )
         raise typer.Abort()
     if not path_to_dataset:
         output = problem.solution(problem.SAMPLE_DATASET.splitlines(True))
