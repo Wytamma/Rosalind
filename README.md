@@ -7,7 +7,7 @@ My solutions to the problems found on [rosalind.info](http://rosalind.info/probl
 SAMPLE_DATASET = """"""
 SAMPLE_OUTPUT = """"""
 
-def solution(dataset):
+def solution(dataset: list) -> str:
     pass
 ```
 
