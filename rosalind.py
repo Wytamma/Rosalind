@@ -2,6 +2,7 @@ import typer
 from pathlib import Path
 
 from python_village import ini3, ini4, ini5, ini6
+from bioinformatics_stronghold import dna
 
 def main(
     name_of_problem: str = typer.Argument(...), 
