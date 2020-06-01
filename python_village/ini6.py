@@ -8,11 +8,13 @@ we 2
 also 1
 Zen 1"""
 
-SAMPLE_OUTPUT = "\n".join(sorted(SAMPLE_OUTPUT.splitlines())) # order doesn't matter
+SAMPLE_OUTPUT = "\n".join(sorted(SAMPLE_OUTPUT.splitlines()))  # order doesn't matter
+
 
 def solution(dataset):
     f"""Solution to Rosalind problem"""
     from collections import Counter
+
     words = dataset[0].split()
     c = Counter(words)
     return "\n".join(sorted([f"{word} {c[word]}" for word in c]))

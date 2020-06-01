@@ -11,5 +11,6 @@ And gallantly he chickened out
 Bravely talking to his feet
 He beat a very brave retreat"""
 
+
 def solution(dataset):
     return "".join([line for i, line in enumerate(dataset, 1) if i % 2 == 0])
