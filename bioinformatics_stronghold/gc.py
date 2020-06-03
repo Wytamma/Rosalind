@@ -27,11 +27,10 @@ class Seq:
 
     @property
     def gc(self) -> float:
-        """Calculate the GC content of the sequence"""
+        """Return the GC content of the sequence"""
         g = self.sequence.count("G")
         c = self.sequence.count("C")
-        gc = g + c
-        return gc / len(self) * 100
+        return (g + c) / len(self) * 100
 
 
 def read_fasta(lines_of_fasta_file: list) -> List[Seq]:
