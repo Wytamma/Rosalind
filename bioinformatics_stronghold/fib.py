@@ -4,7 +4,7 @@ SAMPLE_OUTPUT = """19"""
 
 def population_size(n: int, k: int) -> int:
     """
-    Returns the population at time 'n' given 'k' genration size.
+    Returns the population at time 'n' given 'k' generation size.
     Fn = Fn−1 + (Fn−2 * k)
     """
     if n <= 2:
