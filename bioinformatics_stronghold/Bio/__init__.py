@@ -1,22 +1,5 @@
 from typing import List
-from dataclasses import dataclass
-
-@dataclass
-class Seq:
-    """Class for nucleotide sequences"""
-
-    sequence: str
-    id: str
-
-    def __len__(self) -> int:
-        return len(self.sequence)
-
-    @property
-    def gc(self) -> float:
-        """Return the GC content of the sequence"""
-        g = self.sequence.count("G")
-        c = self.sequence.count("C")
-        return (g + c) / len(self) * 100
+from .seq import Seq
 
 
 def read_fasta(lines_of_fasta_file: list) -> List[Seq]:
