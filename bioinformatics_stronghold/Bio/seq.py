@@ -37,6 +37,9 @@ class Seq:
         return (g + c) / len(self) * 100
 
     def translate(self) -> str:
-        """Return the translated sequence"""
-        return "".join(codons[self.sequence[i:i+3]] for i in range(0, len(self.sequence), 3))
+        """
+        Return the translated sequence.
+        *Currently stop signals are ignored.*
+        """
+        return "".join(codons[self.sequence[i:i+3]] for i in range(0, len(self.sequence), 3) if codons[self.sequence[i:i+3]] != 'Stop')
 
