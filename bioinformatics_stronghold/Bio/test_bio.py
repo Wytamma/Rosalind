@@ -32,6 +32,10 @@ def test_add():
     seq2 = Seq("TATA")
     assert (seq1 + seq2).sequence == "GGAATTTATA"
 
+def test_sub():
+    seq1 = Seq("TTTT")
+    seq2 = Seq("TATA")
+    assert (seq1 - seq2) == 2
 
 def test_gc():
     seq = Seq("GCAT")

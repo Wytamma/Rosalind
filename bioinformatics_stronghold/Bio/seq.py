@@ -47,11 +47,15 @@ class Seq:
         """Inverting a Seq object (i.e. ~Seq) will return the reverse complement of that sequence"""
         return self.reverse_complement()
 
-    def __add__(self, sequence: Seq) -> Seq:
+    def __add__(self, other: Seq) -> Seq:
         """Adding two sequence objects (i.e. Seq1 + Seq2) returns a new Seq object that is the 
         concatenation of the two objects sequences. ID is taken from eh first object"""
-        new_sequence = self.sequence + sequence.sequence
+        new_sequence = self.sequence + other.sequence
         return Seq(new_sequence, self.id)
+
+    def __sub__(self, other: Seq) -> int:
+        """Subtracting two Seq objects (i.e. seq1 - seq2) returns the hamming difference between them"""
+        return sum(i != j for i, j in zip(self.sequence, other.sequence))
 
     def __getitem__(self, item):
         return self.sequence[item]
