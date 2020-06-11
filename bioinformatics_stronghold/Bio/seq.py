@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Generator
 from collections import Counter, defaultdict
-
+from itertools import zip_longest
 
 codon_table = """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -34,8 +34,11 @@ class Seq:
 
     def __repr__(self):
         if not self.id:
-            return f"Seq({self.sequence})"
-        return f"Seq({self.sequence}, id='{self.id}')"
+            return f"Seq({self.sequence[:60]})"
+        concat = ""
+        if len(self) > 60:
+            concat = "..."
+        return f"Seq({self.sequence[:60]}{concat}, id='{self.id}')"
 
     def __str__(self):
         return self.sequence
@@ -47,6 +50,10 @@ class Seq:
         """Inverting a Seq object (i.e. ~Seq) will return the reverse complement of that sequence"""
         return self.reverse_complement()
 
+    def __eq__(self, other) -> bool:
+        """Compare the string representations of two Seq objects"""
+        return str(self) == str(other)
+
     def __add__(self, other: Seq) -> Seq:
         """Adding two sequence objects (i.e. Seq1 + Seq2) returns a new Seq object that is the 
         concatenation of the two objects sequences. ID is taken from eh first object"""
@@ -55,16 +62,31 @@ class Seq:
 
     def __sub__(self, other: Seq) -> int:
         """Subtracting two Seq objects (i.e. seq1 - seq2) returns the hamming difference between them"""
-        return sum(i != j for i, j in zip(self.sequence, other.sequence))
+        return sum(i != j for i, j in zip_longest(self.sequence, other.sequence))
 
-    def __getitem__(self, item):
-        return self.sequence[item]
+    def __getitem__(self, index):
+        return self.sequence[index]
+
+    def __setitem__(self, index, nt):
+        self.sequence = self.sequence[:index] + nt + self.sequence[index + 1 :]
+
+    def __iter__(self):
+        self.n = 0
+        return self
+
+    def __next__(self):
+        if self.n < len(self):
+            result = self[self.n]
+            self.n += 1
+            return result
+        else:
+            raise StopIteration
 
     @property
     def gc(self) -> float:
         """Return the GC content of the sequence"""
-        g = self.sequence.count("G")
-        c = self.sequence.count("C")
+        g = self.count("G")
+        c = self.count("C")
         return (g + c) / len(self) * 100
 
     @property
@@ -74,17 +96,31 @@ class Seq:
 
     @classmethod
     def consensus(cls, *args):
-        """Return a consensus sequence from n Seq objects"""
-        counts = map(Counter, zip(*args))
-        return Seq("".join([c.most_common(1)[0][0] for c in counts]), args[0].id)
+        """Return a consensus sequence from n Seq objects."""
+        counts = map(Counter, zip_longest(*args))
+        consensus = ""
+        for c in counts:
+            del c[None]
+            consensus += c.most_common(1)[0][0]
+        return Seq(consensus, args[0].id)
 
     def to_fasta(self, line_length: int = 60) -> str:
-        formated_sequence = "\n".join([s for s in self.kmers(line_length, line_length)])
-        return f">{self.id}\n{formated_sequence}"
+        formated_sequence = "\n".join(
+            [str(s) for s in self.kmers(line_length, line_length)]
+        )
+        return f">{self.id}\n{formated_sequence}\n"
 
     def kmers(self, n: int, step: int = 1) -> Generator:
         """Return a generator for kmers of length n"""
-        return (self.sequence[i : i + n] for i in range(0, len(self.sequence), step))
+        return (
+            Seq(self.sequence[i : i + n]) for i in range(0, len(self.sequence), step)
+        )
+
+    def count(self, string: str, max_diff: int = 0) -> int:
+        if diff == 0:
+            return self.sequence.count(string)
+        other = Seq(string)
+        return sum((kmer - other) <= diff for kmer in self.kmers(len(other)))
 
     def reverse_complement(self) -> Seq:
         complements = {"A": "T", "T": "A", "G": "C", "C": "G"}
@@ -93,6 +129,9 @@ class Seq:
 
     def transcribe(self) -> Seq:
         return Seq(self.sequence.replace("T", "U"), self.id)
+
+    def reverse_transcribe(self) -> Seq:
+        return Seq(self.sequence.replace("U", "T"), self.id)
 
     def translate(self) -> Seq:
         """
