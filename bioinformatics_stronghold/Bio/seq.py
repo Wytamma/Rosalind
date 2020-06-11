@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Generator
+from collections import Counter
 
 codon_table = """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -39,9 +40,17 @@ class Seq:
         c = self.sequence.count("C")
         return (g + c) / len(self) * 100
 
+    @property
+    def counts(self) -> dict:
+        """Return the counts of letters in the sequence"""
+        return Counter(self.sequence)
+
     def kmers(self, n: int, step: int = 1) -> Generator:
         """Return a generator for kmers of length n"""
         return (self.sequence[i : i + n] for i in range(0, len(self.sequence), step))
+
+    def transcribe(self) -> Seq:
+        return Seq(self.sequence.replace("T", "U"), id-=self.id)
 
     def translate(self) -> str:
         """
