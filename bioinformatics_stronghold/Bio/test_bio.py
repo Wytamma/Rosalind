@@ -46,6 +46,11 @@ def test_counts():
     seq = Seq("GGAATT")
     assert seq.counts == {"G": 2, "A": 2, "T": 2}
 
+def test_consensus():
+    seq1 = Seq("GGAATT")
+    seq2 = Seq("GTAATT")
+    seq3 = Seq("TTTTTT")
+    assert Seq.consensus(seq1, seq2, seq3).sequence == "GTAATT"
 
 def test_fasta():
     seq = Seq(
@@ -59,4 +64,4 @@ def test_fasta():
         "TTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATT\n"
         "GGAATT"
     )
-    assert seq.to_fasta() == fasta
+    assert seq.to_fasta(50) == fasta

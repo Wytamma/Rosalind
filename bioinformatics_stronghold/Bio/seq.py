@@ -72,6 +72,12 @@ class Seq:
         """Return the counts of letters in the sequence"""
         return defaultdict(int, Counter(self.sequence))
 
+    @classmethod
+    def consensus(cls, *args):
+        """Return a consensus sequence from n Seq objects"""
+        counts = map(Counter, zip(*args))
+        return Seq("".join([c.most_common(1)[0][0] for c in counts]), args[0].id)
+
     def to_fasta(self, line_length: int = 60) -> str:
         formated_sequence = "\n".join([s for s in self.kmers(line_length, line_length)])
         return f">{self.id}\n{formated_sequence}"
