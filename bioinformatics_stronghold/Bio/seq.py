@@ -117,7 +117,7 @@ class Seq:
         )
 
     def count(self, string: str, max_diff: int = 0) -> int:
-        if diff == 0:
+        if max_diff == 0:
             return self.sequence.count(string)
         other = Seq(string)
         return sum((kmer - other) <= diff for kmer in self.kmers(len(other)))
