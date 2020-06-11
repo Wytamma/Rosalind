@@ -1,7 +1,8 @@
-from dataclasses import dataclass
+from __future__ import annotations
+
 from typing import Generator
 from collections import Counter
-from __future__ import annotations
+
 
 codon_table = """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -23,30 +24,32 @@ UGG W      CGG R      AGG R      GGG G"""
 codons = dict(zip(codon_table.split()[::2], codon_table.split()[1::2]))
 
 
-@dataclass
 class Seq:
     """Class for nucleotide sequences"""
 
-    sequence: str
-    id: str = None
-    codons: dict = codons
+    def __init__(self, sequence: str, id: str = None, codons: dict = codons):
+        self.sequence = sequence
+        self.id = id
+        self.codons = codons
 
     def __repr__(self):
-        return f"Seq({self.Seq[:10]}..., id='{self.id[:15] if self.id}')"
-    
+        if not self.id:
+            return f"Seq({self.sequence})"
+        return f"Seq({self.sequence}, id='{self.id}')"
+
     def __str__(self):
         return self.sequence
 
     def __len__(self) -> int:
         return len(self.sequence)
 
-    def __neg__(self) -> Seq:
-        """Negating a Seq object (i.e. !Seq) will return the reverse complement of that sequence"""
+    def __invert__(self) -> Seq:
+        """Inverting a Seq object (i.e. ~Seq) will return the reverse complement of that sequence"""
         return self.reverse_complement()
 
     def __add__(self, sequence: Seq) -> Seq:
         """Adding two sequence objects (i.e. Seq1 + Seq2) returns a new Seq object that is the 
-        concatenation of the two objects sequences. ID is taken from eh first object""" 
+        concatenation of the two objects sequences. ID is taken from eh first object"""
         new_sequence = self.sequence + sequence.sequence
         return Seq(new_sequence, self.id)
 
@@ -61,6 +64,10 @@ class Seq:
     def counts(self) -> dict:
         """Return the counts of letters in the sequence"""
         return Counter(self.sequence)
+
+    def fasta(self, line_length: int = 50) -> str:
+        formated_sequence = "\n".join([s for s in self.kmers(line_length, line_length)])
+        return f">{self.id}\n{formated_sequence}"
 
     def kmers(self, n: int, step: int = 1) -> Generator:
         """Return a generator for kmers of length n"""
@@ -85,4 +92,3 @@ class Seq:
             if self.codons[self.sequence[i : i + 3]] != "Stop"
         )
         return Seq(AA, self.id)
-
