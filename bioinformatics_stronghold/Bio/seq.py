@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import Generator
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 codon_table = """UUU F      CUU L      AUU I      GUU V
@@ -70,9 +70,9 @@ class Seq:
     @property
     def counts(self) -> dict:
         """Return the counts of letters in the sequence"""
-        return Counter(self.sequence)
+        return defaultdict(int, Counter(self.sequence))
 
-    def to_fasta(self, line_length: int = 50) -> str:
+    def to_fasta(self, line_length: int = 60) -> str:
         formated_sequence = "\n".join([s for s in self.kmers(line_length, line_length)])
         return f">{self.id}\n{formated_sequence}"
 

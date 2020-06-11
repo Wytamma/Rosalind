@@ -4,3 +4,17 @@ python_village/__pycache__/ini4.cpython-37.pyc
 python_village/__pycache__/ini5.cpython-37.pyc
 python_village/__pycache__/ini6.cpython-37.pyc
 .pytest_cache
+bioinformatics_stronghold/__pycache__/__init__.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/cons.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/dna.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/fib.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/gc.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/hamm.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/iprb.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/prot.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/revc.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/rna.cpython-37.pyc
+bioinformatics_stronghold/__pycache__/subs.cpython-37.pyc
+bioinformatics_stronghold/Bio/__pycache__/__init__.cpython-37.pyc
+bioinformatics_stronghold/Bio/__pycache__/io.cpython-37.pyc
+bioinformatics_stronghold/Bio/__pycache__/seq.cpython-37.pyc
