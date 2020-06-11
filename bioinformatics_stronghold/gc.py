@@ -14,6 +14,6 @@ SAMPLE_OUTPUT = """Rosalind_0808
 
 
 def solution(dataset: list) -> str:
-    sequences = read_fasta(dataset)
+    sequences = read_fasta(lines=dataset)
     max_gc_seq = max(sequences, key=lambda seq: seq.gc)
     return f"{max_gc_seq.id}\n{max_gc_seq.gc:.6f}"

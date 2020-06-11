@@ -23,7 +23,7 @@ G: 1 1 6 3 0 1 0 0
 T: 1 5 0 0 0 1 1 6"""
 
 def solution(dataset: list) -> str:
-    sequences = read_fasta(dataset)
+    sequences = read_fasta(lines=dataset)
     nucleotides = ['A', 'C', 'G', 'T']
     all_counts = []
     consensus = ""
