@@ -22,9 +22,10 @@ C: 0 0 1 4 2 0 6 1
 G: 1 1 6 3 0 1 0 0
 T: 1 5 0 0 0 1 1 6"""
 
+
 def solution(dataset: list) -> str:
     sequences = read_fasta(lines=dataset)
-    nucleotides = ['A', 'C', 'G', 'T']
+    nucleotides = ["A", "C", "G", "T"]
     all_counts = []
     consensus = ""
     for nts in zip(*sequences):
@@ -32,5 +33,10 @@ def solution(dataset: list) -> str:
         consensus += nt_counts.most_common(1)[0][0]
         nt_counts = defaultdict(int, Counter(nts))
         all_counts.append([str(nt_counts[nt]) for nt in nucleotides])
-    profile_matrix = "\n".join([f"{nt}: {' '.join(counts)}" for nt, counts in zip(nucleotides, zip(*all_counts))])
+    profile_matrix = "\n".join(
+        [
+            f"{nt}: {' '.join(counts)}"
+            for nt, counts in zip(nucleotides, zip(*all_counts))
+        ]
+    )
     return f"{consensus}\n{profile_matrix}"

@@ -2,7 +2,18 @@ import typer
 from pathlib import Path
 
 from python_village import ini3, ini4, ini5, ini6
-from bioinformatics_stronghold import dna, rna, revc, hamm, fib, gc, iprb, prot, subs, cons
+from bioinformatics_stronghold import (
+    dna,
+    rna,
+    revc,
+    hamm,
+    fib,
+    gc,
+    iprb,
+    prot,
+    subs,
+    cons,
+)
 
 
 def main(
