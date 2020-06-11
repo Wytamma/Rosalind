@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Generator
 
 codon_table = """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -19,6 +20,7 @@ UGG W      CGG R      AGG R      GGG G"""
 
 codons = dict(zip(codon_table.split()[::2], codon_table.split()[1::2]))
 
+
 @dataclass
 class Seq:
     """Class for nucleotide sequences"""
@@ -36,10 +38,17 @@ class Seq:
         c = self.sequence.count("C")
         return (g + c) / len(self) * 100
 
+    def kmers(self, n: int, step: int = 1) -> Generator:
+        """Return a generator for kmers of length n"""
+        return (self.sequence[i : i + n] for i in range(0, len(self.sequence), step))
+
     def translate(self) -> str:
         """
         Return the translated sequence.
         *Currently stop signals are ignored.*
         """
-        return "".join(codons[self.sequence[i:i+3]] for i in range(0, len(self.sequence), 3) if codons[self.sequence[i:i+3]] != 'Stop')
-
+        return "".join(
+            codons[self.sequence[i : i + 3]]
+            for i in range(0, len(self.sequence), 3)
+            if codons[self.sequence[i : i + 3]] != "Stop"
+        )
