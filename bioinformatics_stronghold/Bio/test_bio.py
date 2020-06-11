@@ -32,10 +32,12 @@ def test_add():
     seq2 = Seq("TATA")
     assert (seq1 + seq2).sequence == "GGAATTTATA"
 
+
 def test_sub():
     seq1 = Seq("TTTT")
     seq2 = Seq("TATA")
     assert (seq1 - seq2) == 2
+
 
 def test_gc():
     seq = Seq("GCAT")
@@ -46,11 +48,13 @@ def test_counts():
     seq = Seq("GGAATT")
     assert seq.counts == {"G": 2, "A": 2, "T": 2}
 
+
 def test_consensus():
     seq1 = Seq("GGAATT")
     seq2 = Seq("GTAATT")
     seq3 = Seq("TTTTTT")
     assert Seq.consensus(seq1, seq2, seq3).sequence == "GTAATT"
+
 
 def test_fasta():
     seq = Seq(
@@ -62,6 +66,13 @@ def test_fasta():
         "GGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGG\n"
         "AATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAA\n"
         "TTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATTGGAATT\n"
-        "GGAATT"
+        "GGAATT\n"
     )
     assert seq.to_fasta(50) == fasta
+
+
+def test_count():
+    seq1 = Seq("GGAATT")
+    assert seq1.count("G") == 2
+    assert seq1.count("GG") == 1
+    assert seq1.count("GG", 1) == 2

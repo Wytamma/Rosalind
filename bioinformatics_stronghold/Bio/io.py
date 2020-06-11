@@ -2,7 +2,7 @@ from typing import List
 from .seq import Seq
 
 
-def read_fasta(path_to_fasta_file: str = None, lines: list = None ) -> List[Seq]:
+def read_fasta(path_to_fasta_file: str = None, lines: list = None) -> List[Seq]:
     """Turn the lines of a fasta file into a list of Seq objects"""
     if path_to_fasta_file:
         with open(path_to_fasta_file) as f:
