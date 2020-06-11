@@ -27,6 +27,7 @@ class Seq:
 
     sequence: str
     id: str
+    codons: dict = codons
 
     def __len__(self) -> int:
         return len(self.sequence)
@@ -48,7 +49,7 @@ class Seq:
         *Currently stop signals are ignored.*
         """
         return "".join(
-            codons[self.sequence[i : i + 3]]
+            self.codons[self.sequence[i : i + 3]]
             for i in range(0, len(self.sequence), 3)
-            if codons[self.sequence[i : i + 3]] != "Stop"
+            if self.codons[self.sequence[i : i + 3]] != "Stop"
         )

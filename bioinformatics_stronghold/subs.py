@@ -10,6 +10,6 @@ def kmer_generator(string, n):
 
 
 def solution(dataset: list) -> str:
-    s, t = map(lambda x: x.strip(), dataset)
-    locs = [str(i) for i, kmer in enumerate(kmer_generator(s, len(t)), 1) if kmer == t]
-    return " ".join(locs)
+    s, t = map(lambda x: x.strip(), dataset)  # clean
+    locs = [str(i) for i, kmer in enumerate(kmer_generator(s, len(t)), 1) if kmer == t]  # process
+    return " ".join(locs)  # report
