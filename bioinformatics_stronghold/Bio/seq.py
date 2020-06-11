@@ -53,6 +53,9 @@ class Seq:
         new_sequence = self.sequence + sequence.sequence
         return Seq(new_sequence, self.id)
 
+    def __getitem__(self, item):
+        return self.sequence[item]
+
     @property
     def gc(self) -> float:
         """Return the GC content of the sequence"""
@@ -65,7 +68,7 @@ class Seq:
         """Return the counts of letters in the sequence"""
         return Counter(self.sequence)
 
-    def fasta(self, line_length: int = 50) -> str:
+    def to_fasta(self, line_length: int = 50) -> str:
         formated_sequence = "\n".join([s for s in self.kmers(line_length, line_length)])
         return f">{self.id}\n{formated_sequence}"
 
