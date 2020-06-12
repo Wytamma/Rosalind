@@ -120,11 +120,13 @@ class Seq:
         if max_diff == 0:
             return self.sequence.count(string)
         other = Seq(string)
-        return sum((kmer - other) <= diff for kmer in self.kmers(len(other)))
+        return sum((kmer - other) <= max_diff for kmer in self.kmers(len(other)))
 
-    def reverse_complement(self) -> Seq:
+    def reverse_complement(self, rna: bool = False) -> Seq:
         complements = {"A": "T", "T": "A", "G": "C", "C": "G"}
-        revc = "".join(complements[nt] for nt in reversed(self.sequence))
+        if rna:
+            complements = {"A": "U", "U": "A", "G": "C", "C": "G"}
+        revc = "".join(complements[nt] for nt in reversed(self))
         return Seq(revc, self.id)
 
     def transcribe(self) -> Seq:
