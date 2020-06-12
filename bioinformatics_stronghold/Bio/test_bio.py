@@ -53,7 +53,7 @@ def test_consensus():
     seq1 = Seq("GGAATT")
     seq2 = Seq("GTAATT")
     seq3 = Seq("TTTTTT")
-    assert Seq.consensus(seq1, seq2, seq3).sequence == "GTAATT"
+    assert Seq.consensus(seq1, seq2, seq3) == "GTAATT"
 
 
 def test_fasta():
@@ -76,3 +76,15 @@ def test_count():
     assert seq1.count("G") == 2
     assert seq1.count("GG") == 1
     assert seq1.count("GG", 1) == 2
+
+def test_substitute():
+    seq1 = Seq("GGAATT")
+    assert seq1.substitute('T', 'U') == "GGAAUU"
+    assert seq1.substitute('T', 'U', 1) == "GGAAUT"
+
+def test_find():
+    seq1 = Seq("GGAATTT")
+    assert list(seq1.find('A')) == [2,3]
+    assert seq1.find('A', count=1) == [2]
+    assert seq1.find('TT') == [4, 5]
+    assert seq1.find('TT', overlapping=False) == [4]

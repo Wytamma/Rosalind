@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Generator
 from collections import Counter, defaultdict
 from itertools import zip_longest
+from re import finditer
 
 codon_table = """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -121,6 +122,20 @@ class Seq:
             return self.sequence.count(string)
         other = Seq(string)
         return sum((kmer - other) <= max_diff for kmer in self.kmers(len(other)))
+
+    def substitute(self, old:str, new:str, count: int = -1):
+        return Seq(self.sequence.replace(old, new, count), self.id)
+    
+    def find(self, target: str, count:int = -1, overlapping: bool = True):
+        locs = []
+        if overlapping and len(target) > 1:
+            target= f"{target[:1]}(?=({target[:1]}))"
+        matches = finditer(target, self.sequence)
+        for i, match in enumerate(matches, 1):
+            locs.append(match.start())
+            if i == count:
+                break
+        return locs
 
     def reverse_complement(self, rna: bool = False) -> Seq:
         complements = {"A": "T", "T": "A", "G": "C", "C": "G"}
