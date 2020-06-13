@@ -16,3 +16,6 @@ def population_size(n: int, k: int) -> int:
 def solution(dataset: list) -> str:
     n, k = map(int, dataset[0].strip().split())
     return str(population_size(n, k))
+
+def test_solution():
+    assert solution(SAMPLE_DATASET.splitlines(True)) == SAMPLE_OUTPUT

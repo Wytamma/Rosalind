@@ -17,3 +17,6 @@ def solution(dataset: list) -> str:
     sequences = read_fasta(lines=dataset)
     max_gc_seq = max(sequences, key=lambda seq: seq.gc)
     return f"{max_gc_seq.id}\n{max_gc_seq.gc:.6f}"
+
+def test_solution():
+    assert solution(SAMPLE_DATASET.splitlines(True)) == SAMPLE_OUTPUT

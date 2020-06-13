@@ -15,3 +15,6 @@ def solution(dataset: list) -> str:
         str(i) for i, kmer in enumerate(kmer_generator(s, len(t)), 1) if kmer == t
     ]  # process
     return " ".join(locs)  # report
+
+def test_solution():
+    assert solution(SAMPLE_DATASET.splitlines(True)) == SAMPLE_OUTPUT
