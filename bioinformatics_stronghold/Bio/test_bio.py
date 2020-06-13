@@ -83,9 +83,11 @@ def test_substitute():
     assert seq1.substitute('T', 'U', 1) == "GGAAUT"
 
 def test_find():
-    seq1 = Seq('ATGGGATGATG')
+    seq1 = Seq('ACGGGATGATG')
     assert seq1.find('A') == [0, 5, 8]
     assert seq1.find('A', count=1) == [0]
     assert seq1.find('GATG', overlapping=False) == [4]
     assert seq1.find('GATG', overlapping=True) == [4, 7]
+    assert len(seq1.find('A[CT]G')) == 3
+
 
