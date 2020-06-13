@@ -126,7 +126,7 @@ class Seq:
     def substitute(self, old:str, new:str, count: int = -1):
         return Seq(self.sequence.replace(old, new, count), self.id)
     
-    def find(self, target: str, count:int = -1, overlapping: bool = True):
+    def find(self, target: str, count:int = -1, overlapping: bool = False):
         locs = []
         if overlapping and len(target) > 1:
             target= f"{target[:1]}(?=({target[:1]}))"
