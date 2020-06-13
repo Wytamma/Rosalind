@@ -1,6 +1,7 @@
 # Rosalind solutions
 [![Build Status](https://travis-ci.com/Wytamma/Rosalind.svg?branch=master)](https://travis-ci.com/Wytamma/Rosalind)
 [![codecov](https://codecov.io/gh/Wytamma/Rosalind/branch/master/graph/badge.svg)](https://codecov.io/gh/Wytamma/Rosalind)
+[![image](https://img.shields.io/github/license/wytamma/Rosalind.svg)](https://img.shields.io/github/license/wytamma/Rosalind)
 
 My solutions to the problems found on [rosalind.info](http://rosalind.info/problems/locations/)  
 
