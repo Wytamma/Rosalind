@@ -6,6 +6,6 @@ install:
   - pip install -U pip
   - pip install -U pytest
   - pip install codecov
-script: pytest --cov=bioinformatics_stronghold bioinformatics_stronghold/*.py --cov-report=xml 
+script: coverage run bioinformatics_stronghold/*.py 
 after_success:
   - codecov # submit coverage
