@@ -129,7 +129,7 @@ class Seq:
     def find(self, target: str, count:int = -1, overlapping: bool = False):
         locs = []
         if overlapping and len(target) > 1:
-            target= f"{target[:1]}(?=({target[:1]}))"
+            target= f"(?=({target}))"
         matches = finditer(target, self.sequence)
         for i, match in enumerate(matches, 1):
             locs.append(match.start())
