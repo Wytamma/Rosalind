@@ -19,3 +19,5 @@ bioinformatics_stronghold/Bio/__pycache__/__init__.cpython-37.pyc
 bioinformatics_stronghold/Bio/__pycache__/io.cpython-37.pyc
 bioinformatics_stronghold/Bio/__pycache__/seq.cpython-37.pyc
 bioinformatics_stronghold/Bio/__pycache__/test_bio.cpython-37-pytest-5.4.3.pyc
+bioinformatics_stronghold/__pycache__/fibd.cpython-37-pytest-5.4.3.pyc
+bioinformatics_stronghold/__pycache__/*

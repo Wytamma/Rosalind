@@ -13,6 +13,7 @@ from bioinformatics_stronghold import (
     prot,
     subs,
     cons,
+    fibd,
 )
 
 
