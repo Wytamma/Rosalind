@@ -1,6 +1,8 @@
 # Rosalind solutions
-My solutions to the problems found on [rosalind.info](http://rosalind.info/problems/locations/)
+My solutions to the problems found on [rosalind.info](http://rosalind.info/problems/locations/)  
 [![Build Status](https://travis-ci.com/Wytamma/Rosalind.svg?branch=master)](https://travis-ci.com/Wytamma/Rosalind)
+[![codecov](https://codecov.io/gh/Wytamma/Rosalind/branch/master/graph/badge.svg)](https://codecov.io/gh/Wytamma/Rosalind)
+
 ## Solution template
 
 ```python
