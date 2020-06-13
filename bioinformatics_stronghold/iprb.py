@@ -28,5 +28,6 @@ def solution(dataset: list) -> float:
 
     return round(total_probability, 5)
 
+
 def test_solution():
     assert solution(SAMPLE_DATASET.splitlines(True)) == SAMPLE_OUTPUT

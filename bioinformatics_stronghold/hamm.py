@@ -8,5 +8,6 @@ def solution(dataset: list) -> int:
     If both lines have '\n's then they will be equivalent and won't be counted"""
     return sum(i != j for i, j in zip(*dataset))
 
+
 def test_solution():
     assert solution(SAMPLE_DATASET.splitlines(True)) == SAMPLE_OUTPUT

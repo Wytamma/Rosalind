@@ -20,17 +20,21 @@ seq1.count('ATG')
 seq1.count('ATG', 1)
 ```
 
-### Count the number of occurrences of 'ATG' or 'AAG' in seq1
+### Find the number of occurrences of 'ATG' or 'AAG' in seq1
 ```python
-seq1.count('A[AT]G')
+len(seq1.find('A[AT]G'))
 ```
 
-### Find the average position of all overlapping occurrences of 'ATG' in a fasta file
+### Find the average position of all occurrences of 'ATG' in a fasta file
 ```python
 from statistics import mean
 for seq in Bio.read_fasta('in.fasta'):
-  print(mean(seq.find('ATG', overlapping=True)))
+  print(mean(seq.find('ATG')))
 ```
+
+### find the longest 'A' sequence 
+
+
 
 ### ASCI plot the relative nt counts for all the sequences in a file
 ```python

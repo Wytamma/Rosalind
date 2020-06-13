@@ -123,13 +123,13 @@ class Seq:
         other = Seq(string)
         return sum((kmer - other) <= max_diff for kmer in self.kmers(len(other)))
 
-    def substitute(self, old:str, new:str, count: int = -1):
+    def substitute(self, old: str, new: str, count: int = -1):
         return Seq(self.sequence.replace(old, new, count), self.id)
-    
-    def find(self, target: str, count:int = -1, overlapping: bool = False):
+
+    def find(self, target: str, count: int = -1, overlapping: bool = False):
         locs = []
         if overlapping and len(target) > 1:
-            target= f"(?=({target}))"
+            target = f"(?=({target}))"
         matches = finditer(target, self.sequence)
         for i, match in enumerate(matches, 1):
             locs.append(match.start())
