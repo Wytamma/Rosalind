@@ -16,8 +16,6 @@ def slow_solution(dataset: list) -> str:
         population = [r + 1 for r in population]
         # check who is alive
         population = [r for r in population if r <= m]
-
-        print(len(population), ["r" for _ in population])
     return str(len(population))
 
 
@@ -51,4 +49,5 @@ def solution(dataset: list) -> int:
 
 def test_solution():
     assert solution(SAMPLE_DATASET.splitlines(True)) == SAMPLE_OUTPUT
+    assert slow_solution(SAMPLE_DATASET.splitlines(True)) == SAMPLE_OUTPUT
     assert solution(["75 21"]) == 2109333161649033
