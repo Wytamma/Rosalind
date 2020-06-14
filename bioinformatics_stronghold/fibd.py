@@ -16,7 +16,7 @@ def slow_solution(dataset: list) -> str:
         population = [r + 1 for r in population]
         # check who is alive
         population = [r for r in population if r <= m]
-    return str(len(population))
+    return len(population)
 
 
 import functools
