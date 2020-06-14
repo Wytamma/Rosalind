@@ -1,5 +1,5 @@
 from .Bio import read_fasta
-from collections import Counter, defaultdict
+from collections import Counter
 
 SAMPLE_DATASET = """>Rosalind_1
 ATCCAGCT
@@ -31,7 +31,6 @@ def solution(dataset: list) -> str:
     for nts in zip(*sequences):
         nt_counts = Counter(nts)
         consensus += nt_counts.most_common(1)[0][0]
-        nt_counts = defaultdict(int, Counter(nts))
         all_counts.append([str(nt_counts[nt]) for nt in nucleotides])
     profile_matrix = "\n".join(
         [

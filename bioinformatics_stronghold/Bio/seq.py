@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import Generator
-from collections import Counter, defaultdict
+from collections import Counter
 from itertools import zip_longest
 from re import finditer
 
@@ -93,7 +93,7 @@ class Seq:
     @property
     def counts(self) -> dict:
         """Return the counts of letters in the sequence"""
-        return defaultdict(int, Counter(self.sequence))
+        return Counter(self.sequence)
 
     @classmethod
     def consensus(cls, *args):
