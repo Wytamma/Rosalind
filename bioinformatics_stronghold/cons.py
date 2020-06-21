@@ -1,4 +1,4 @@
-from .Bio import read_fasta
+from pyoinformatics.io import read_fasta
 from collections import Counter
 
 SAMPLE_DATASET = """>Rosalind_1
