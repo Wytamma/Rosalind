@@ -16,6 +16,7 @@ from bioinformatics_stronghold import (
     fibd,
     grph,
     iev,
+    lcsm,
 )
 
 
