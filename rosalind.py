@@ -2,22 +2,7 @@ import typer
 from pathlib import Path
 
 from python_village import ini3, ini4, ini5, ini6
-from bioinformatics_stronghold import (
-    dna,
-    rna,
-    revc,
-    hamm,
-    fib,
-    gc,
-    iprb,
-    prot,
-    subs,
-    cons,
-    fibd,
-    grph,
-    iev,
-    lcsm,
-)
+from bioinformatics_stronghold import solutions
 
 
 def main(
@@ -28,11 +13,11 @@ def main(
     test: bool = typer.Option(False, "--test", "-t", help="Test the soultion."),
 ):
     try:
-        problem = globals()[name_of_problem]
+        problem = solutions[name_of_problem]
     except KeyError:
         typer.echo(
             typer.style(
-                f"The problem '{name_of_problem}' is not defined, you may have a typo or forgot to import it.",
+                f"The problem '{name_of_problem}' is not defined, you may have a typo.",
                 fg=typer.colors.WHITE,
                 bg=typer.colors.RED,
             )
@@ -43,12 +28,12 @@ def main(
         with open(path_to_dataset) as f:
             dataset_lines = f.readlines()
         return typer.echo(problem.solution(dataset_lines))
-
+    
     output = problem.solution(problem.SAMPLE_DATASET.splitlines(True))
 
     if test:
         try:
-            assert output == problem.SAMPLE_OUTPUT
+            problem.test_solution()
             return typer.echo(
                 typer.style(
                     "The solution is correct!", fg=typer.colors.GREEN, bold=True
@@ -63,9 +48,8 @@ def main(
             typer.echo("Correct output:")
             typer.echo(problem.SAMPLE_OUTPUT)
             typer.echo("Current output:")
-
+            return typer.echo(output)
     return typer.echo(output)
-
 
 if __name__ == "__main__":
     typer.run(main)
