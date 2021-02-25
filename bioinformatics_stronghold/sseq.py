@@ -15,7 +15,7 @@ def solution(dataset: list) -> str:
     indices = []
     offest = 0
     for base in subsequence:
-        loc = DNA[offest:].find(base)
+        loc = DNA[offest:].find_one(base)
         offest = loc + offest + 1
         indices.append(str(offest))
 

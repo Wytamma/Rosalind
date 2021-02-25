@@ -37,9 +37,9 @@ def solution(dataset: list) -> str:
     for s in sequences:  # O(n * ( n - 1 ) / 2) == O(n**2), but runs twice as fast
         # check what other nodes in the graph s connects to
         for t in nodes:
-            if s.sequence.endswith(t[:k]):
+            if s.endswith(t[:k]):
                 edges.append((s.id, t.id))
-            if t.sequence.endswith(s[:k]):
+            if t.endswith(s[:k]):
                 edges.append((t.id, s.id))
         # add node to graph
         nodes.append(s)
