@@ -27,6 +27,8 @@ def solution(dataset: list) -> str:
     # for i, b in enumerate(Seq2):
     #     print(b, " ".join([str(s) for s in Matrix[i]]))
 
+    # len(LCS) == Matrix[len(Seq2) - 1][len(Seq1) - 1]
+
     i, j = len(Seq1) - 1, len(Seq2) - 1
     LCS = []
     while i > -1 and j > -1:
@@ -39,7 +41,7 @@ def solution(dataset: list) -> str:
         elif Matrix[j - 1][i] == Matrix[j][i]:
             j -= 1
 
-    return ("".join(LCS))[::-1]
+    return "".join(LCS)[::-1]
 
 
 def test_solution():
